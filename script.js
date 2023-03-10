@@ -35,7 +35,7 @@ gitHubUserNames.forEach(gitHubUserName =>{
 function getReadme(gitHubUserName, card){
   $.get(`https://raw.githubusercontent.com/${gitHubUserName}/${gitHubUserName}/main/README.md`, (data) => {
     let readMe = marked.parse(data)
-    card.append(readMe)
+    card.append(`<div class='readme'>${readMe}</div>`)
   })
 }
 
