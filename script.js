@@ -32,18 +32,26 @@ gitHubUserNames.forEach(gitHubUserName =>{
     createCard(gitHubUserName);
 })
 
+function getReadme(gitHubUserName, card){
+  $.get(`https://raw.githubusercontent.com/${gitHubUserName}/${gitHubUserName}/main/README.md`, (data) => {
+    let readMe = marked.parse(data)
+    card.append(readMe)
+  })
+}
+
 //create card for each student
 function createCard(gitHubUserName) {
-    const cardHTML = `
+    const cardHTML = $(`
       <div class="card">
         <h2><a href="https://github.com/${gitHubUserName}/">${gitHubUserName}</a></h2>
         <img src="https://github.com/${gitHubUserName}.png?size=200" width="270px">
         <a href='http://${gitHubUserName}.github.io/mcsp-project-pixel-art-maker/'> Pixel Art Maker </a>
-        ${makeLinksToRepos(gitHubUserName)}
-      </div>
-    `;
-    $container.append(cardHTML);
-  }
+        </div>
+        `);
+        getReadme(gitHubUserName, cardHTML)
+        // ${makeLinksToRepos(gitHubUserName)}
+        $container.append(cardHTML);
+      }
 function makeLinksToRepos(gitHubUserName){
     let $reposEl = `<div><h3>Repos</h3></div>`
     // $.get(`https://api.github.com/users/${gitHubUserName}/repos`,(repos) =>{
