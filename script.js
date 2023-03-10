@@ -32,29 +32,26 @@ gitHubUserNames.forEach(gitHubUserName =>{
     createCard(gitHubUserName);
 })
 
-
-
-
-
 //create card for each student
-function createCard(gitHubUserName){
-    let $cardEl = $(`<div class="card"><h2><a href="https://github.com/${gitHubUserName}/">${gitHubUserName}</a></h2></div>`)
-    let $imgEl = $(`<img src=https://github.com/${gitHubUserName}.png?size=200 width="270px">`)
-    let $pixelEl = $(`<a href='http://${gitHubUserName}.github.io/mcsp-project-pixel-art-maker/'> Pixel Art Maker </a>`) 
-    $cardEl.append($imgEl)
-    $cardEl.append($pixelEl);
-    $cardEl.append(makeLinksToRepos(gitHubUserName));
-    $container.append($cardEl);
-    console.log
-}
+function createCard(gitHubUserName) {
+    const cardHTML = `
+      <div class="card">
+        <h2><a href="https://github.com/${gitHubUserName}/">${gitHubUserName}</a></h2>
+        <img src="https://github.com/${gitHubUserName}.png?size=200" width="270px">
+        <a href='http://${gitHubUserName}.github.io/mcsp-project-pixel-art-maker/'> Pixel Art Maker </a>
+        ${makeLinksToRepos(gitHubUserName)}
+      </div>
+    `;
+    $container.append(cardHTML);
+  }
 function makeLinksToRepos(gitHubUserName){
-    let $reposEl = $('<div><h3>Repos</h3><div>')
-    $.get(`https://api.github.com/users/${gitHubUserName}/repos`,(repos) =>{
-        repos.forEach(repo => {
-            console.log(repo);
-            //currently rate limited on github api, have to wait till it will let me try again
-            //let $repoEl = `<a href=''></a> `
-        })
-    })
+    let $reposEl = `<div><h3>Repos</h3></div>`
+    // $.get(`https://api.github.com/users/${gitHubUserName}/repos`,(repos) =>{
+    //     repos.forEach(repo => {
+    //         console.log(repo);
+    //         //currently rate limited on github api, have to wait till it will let me try again
+    //         //let $repoEl = `<a href=''></a> `
+    //     })
+    // })
     return $reposEl;
 }
