@@ -1,0 +1,27 @@
+.container{
+    /* background-color: aqua; */
+    width: 90vw;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    background-color: gray;
+    width: 200px;
+    height: 300px;
+    float: left;
+    margin: 10px;
+}
+h2{
+    text-align: center;
+    color: black
+}
+a{
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+a:visted{
+    color: black;
+}
